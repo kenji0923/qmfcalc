@@ -1,8 +1,8 @@
-#ifndef QMSCALC_ROD_CONFIG_H
-#define QMSCALC_ROD_CONFIG_H
+#ifndef QMFCALC_ROD_CONFIG_H
+#define QMFCALC_ROD_CONFIG_H
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 struct RodConfig
@@ -14,7 +14,7 @@ struct RodConfig
 };
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

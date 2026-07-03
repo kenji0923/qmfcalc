@@ -6,9 +6,9 @@ requires = [
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "qmscalc"
+name = "qmfcalc"
 version = "0.1.0"
-description = "Python bindings for quadrupole mass spectrometer voltage calculations"
+description = "Python bindings for quadrupole mass filter voltage calculations"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -22,6 +22,6 @@ cmake.version = ">=3.28"
 wheel.packages = []
 
 [tool.scikit-build.cmake.define]
-QMSCALC_BUILD_PYTHON = true
-QMSCALC_BUILD_EXECUTABLES = false
-QMSCALC_BUILD_DOCS = false
+QMFCALC_BUILD_PYTHON = true
+QMFCALC_BUILD_EXECUTABLES = false
+QMFCALC_BUILD_DOCS = false

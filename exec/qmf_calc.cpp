@@ -59,11 +59,11 @@ double get_V(const double m, const double omega, const double r0, const double q
 double get_mass_resolution(const double E_k, const double L, const double f, const double C_res);
 
 
-int qms_calc()
+int qmf_calc()
 {
     rh::prepare();
 
-    rh::DataSaver data_saver("data_qms_calc");
+    rh::DataSaver data_saver("data_qmf_calc");
 
 
     TF1* f_first_stability_boundary = new TF1("f_first_stability_boundary", get_first_stability_boundary, 0, 0.909104, 1);

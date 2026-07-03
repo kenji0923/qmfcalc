@@ -4,7 +4,7 @@
 
 #include <pybind11/pybind11.h>
 
-#include <qmscalc/voltage_calculator.h>
+#include <qmfcalc/voltage_calculator.h>
 
 
 namespace py = pybind11;
@@ -44,8 +44,8 @@ py::dict calculate_voltages(const double r0_mm,
     const double r0_m = r0_mm * kMilliMetre;
     const double rf_frequency_hz = rf_frequency_mhz * kMegaHertz;
 
-    const qmscalc::VoltageSolution solution =
-	qmscalc::compute_target_voltages(effective_mass_kg, delta_mass_kg, r0_m, rf_frequency_hz);
+    const qmfcalc::VoltageSolution solution =
+	qmfcalc::compute_target_voltages(effective_mass_kg, delta_mass_kg, r0_m, rf_frequency_hz);
 
     if (!solution.transmitted) {
 	throw std::runtime_error("requested resolution is unreachable; no operating point exists");
@@ -61,10 +61,10 @@ py::dict calculate_voltages(const double r0_mm,
 } // namespace
 
 
-PYBIND11_MODULE(qmscalc, m)
+PYBIND11_MODULE(qmfcalc, m)
 {
-    m.doc() = "Python bindings for QMS voltage calculations.";
-    m.attr("__version__") = QMSCALC_VERSION;
+    m.doc() = "Python bindings for QMF voltage calculations.";
+    m.attr("__version__") = QMFCALC_VERSION;
 
     m.def(
 	"calculate_voltages",
@@ -74,7 +74,7 @@ PYBIND11_MODULE(qmscalc, m)
 	"resolution"_a,
 	"rf_frequency_mhz"_a,
 	R"pbdoc(
-Calculate QMS RF and DC electrode voltages.
+Calculate QMF RF and DC electrode voltages.
 
 Args:
     r0_mm: Field radius from central axis to rod surface [mm].

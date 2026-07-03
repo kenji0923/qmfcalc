@@ -1,8 +1,8 @@
-#ifndef QMSCALC_VOLTAGE_CALCULATOR_H
-#define QMSCALC_VOLTAGE_CALCULATOR_H
+#ifndef QMFCALC_VOLTAGE_CALCULATOR_H
+#define QMFCALC_VOLTAGE_CALCULATOR_H
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 // Elementary charge [C].
@@ -56,7 +56,7 @@ struct VoltageSolution
 VoltageSolution compute_target_voltages(double m, double delta_m, double r0, double f);
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

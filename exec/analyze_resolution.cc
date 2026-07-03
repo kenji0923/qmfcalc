@@ -15,8 +15,8 @@
 #include <fkYAML/node.hpp>
 #include <roothelper/roothelper.h>
 
-#include <qmscalc/resolution_estimator.h>
-#include <qmscalc/stability_diagram.h>
+#include <qmfcalc/resolution_estimator.h>
+#include <qmfcalc/stability_diagram.h>
 
 
 namespace rh = roothelper;
@@ -28,7 +28,7 @@ namespace {
 // Wrap the stability boundary as a parameter-free TF1 for drawing.
 double stability_boundary_tf1(const double* x, const double*)
 {
-    return qmscalc::get_first_stability_boundary(x[0]);
+    return qmfcalc::get_first_stability_boundary(x[0]);
 }
 
 
@@ -74,7 +74,7 @@ std::string default_output_directory(const Config& cfg)
 
 
 void write_result_yaml(const std::filesystem::path& path, const Config& cfg,
-		       const qmscalc::ResolutionEstimate& est)
+		       const qmfcalc::ResolutionEstimate& est)
 {
     // fkYAML does not auto-vivify mappings, so each level is created explicitly.
     fkyaml::node input = fkyaml::node::mapping();
@@ -107,7 +107,7 @@ void write_result_yaml(const std::filesystem::path& path, const Config& cfg,
 // Build, fill and write the single-entry result TTree into the given ROOT
 // directory (the data.root opened by DataSaver).
 void write_result_tree(TDirectory* directory, const Config& cfg,
-		       const qmscalc::ResolutionEstimate& est)
+		       const qmfcalc::ResolutionEstimate& est)
 {
     double q = cfg.q;
     double a = cfg.a;
@@ -142,9 +142,9 @@ void write_result_tree(TDirectory* directory, const Config& cfg,
 
 
 void write_plot(const std::filesystem::path& output_directory, const Config& cfg,
-		const qmscalc::ResolutionEstimate& est)
+		const qmfcalc::ResolutionEstimate& est)
 {
-    const double a_peak = qmscalc::get_first_stability_apex_a();
+    const double a_peak = qmfcalc::get_first_stability_apex_a();
 
     rh::Prepare();
     rh::DataSaver data_saver(output_directory);
@@ -155,7 +155,7 @@ void write_plot(const std::filesystem::path& output_directory, const Config& cfg
 
     TCanvas* c_stability_scan = rh::CreateCanvas("c_stability_scan", "Stability scan line");
 
-    TF1* f_boundary = new TF1("f_boundary", stability_boundary_tf1, 0, qmscalc::kFirstStabilityQMax, 0);
+    TF1* f_boundary = new TF1("f_boundary", stability_boundary_tf1, 0, qmfcalc::kFirstStabilityQMax, 0);
     f_boundary->SetTitle("First stability region with scan line");
     f_boundary->SetNpx(1024);
     f_boundary->SetLineColor(kBlack);
@@ -249,16 +249,16 @@ int analyze_resolution(int argc, char** argv)
 	return 1;
     }
 
-    const qmscalc::ResolutionEstimate est = qmscalc::estimate_mass_resolution_from_slope(cfg.slope);
+    const qmfcalc::ResolutionEstimate est = qmfcalc::estimate_mass_resolution_from_slope(cfg.slope);
 
     const std::filesystem::path output_directory =
 	program.is_used("--output") ? program.get<std::string>("--output") : default_output_directory(cfg);
     std::filesystem::create_directories(output_directory);
 
     // ----- stdout report -----
-    const double a_peak = qmscalc::get_first_stability_apex_a();
+    const double a_peak = qmfcalc::get_first_stability_apex_a();
     printf("First stability apex: q_peak=%.6f a_peak=%.6f (apex slope a/q=%.6f)\n",
-	   qmscalc::kFirstStabilityQPeak, a_peak, a_peak / qmscalc::kFirstStabilityQPeak);
+	   qmfcalc::kFirstStabilityQPeak, a_peak, a_peak / qmfcalc::kFirstStabilityQPeak);
     if (cfg.has_qa) {
 	printf("Input: q=%.6f a=%.6f  (q/a=%.6f, a/q=%.6f)\n", cfg.q, cfg.a, cfg.q_over_a, cfg.slope);
     } else {

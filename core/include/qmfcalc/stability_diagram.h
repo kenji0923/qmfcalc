@@ -1,11 +1,11 @@
-#ifndef QMSCALC_STABILITY_DIAGRAM_H
-#define QMSCALC_STABILITY_DIAGRAM_H
+#ifndef QMFCALC_STABILITY_DIAGRAM_H
+#define QMFCALC_STABILITY_DIAGRAM_H
 
 
 #include <cmath>
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 // q value of the apex (tip) of the first stability region, where the rising
@@ -51,7 +51,7 @@ inline double get_first_stability_apex_a(const double q_peak = kFirstStabilityQP
 }
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

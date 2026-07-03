@@ -53,7 +53,7 @@ cd exec
 - `data.root` : roothelper canvas data plus a `TTree` named `result` with one
   entry holding the input and result fields
 
-The reusable kernel lives in `core/include/qmscalc/`:
+The reusable kernel lives in `core/include/qmfcalc/`:
 `stability_diagram.h` (boundary edge calculators) and `resolution_estimator.h`
 (`estimate_mass_resolution`, `estimate_mass_resolution_from_slope`,
 `find_slope_for_mass_resolution`), the last used by `calculate_voltage` below.
@@ -66,7 +66,7 @@ electrode voltages. It recovers the operating line from the requested resolution
 (`find_slope_for_mass_resolution`), places the operating point at the transmitted
 mass center, and converts the Mathieu `(q, a)` to voltages.
 
-**Conventions** (see `core/include/qmscalc/voltage_calculator.h`): `r0` is the
+**Conventions** (see `core/include/qmfcalc/voltage_calculator.h`): `r0` is the
 distance from the central axis to the rod surface (field radius). `U` is the
 **pole-to-pole DC** (rods at `+/-U/2`), `a = 4eU/(m omega^2 r0^2)`. `V` is the
 **per-rod peak-to-peak RF** (each rod swings `+/-V/2`), `q = 2eV/(m omega^2 r0^2)`.

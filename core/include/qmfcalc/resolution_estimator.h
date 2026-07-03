@@ -1,8 +1,8 @@
-#ifndef QMSCALC_RESOLUTION_ESTIMATOR_H
-#define QMSCALC_RESOLUTION_ESTIMATOR_H
+#ifndef QMFCALC_RESOLUTION_ESTIMATOR_H
+#define QMFCALC_RESOLUTION_ESTIMATOR_H
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 // Result of estimating the mass resolution for a single operating line.
@@ -43,7 +43,7 @@ ResolutionEstimate estimate_mass_resolution_from_slope(double slope);
 double find_slope_for_mass_resolution(double target_resolution);
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

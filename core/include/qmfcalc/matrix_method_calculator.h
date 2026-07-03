@@ -1,16 +1,16 @@
-#ifndef QMSCALC_MATRIX_METHOD_CALCULATOR_H
-#define QMSCALC_MATRIX_METHOD_CALCULATOR_H
+#ifndef QMFCALC_MATRIX_METHOD_CALCULATOR_H
+#define QMFCALC_MATRIX_METHOD_CALCULATOR_H
 
 
 #include <array>
 #include <vector>
 
-#include <qmscalc/ion_config.h>
-#include <qmscalc/result.h>
-#include <qmscalc/rod_config.h>
+#include <qmfcalc/ion_config.h>
+#include <qmfcalc/result.h>
+#include <qmfcalc/rod_config.h>
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 class MatrixMethodCalculator
@@ -37,7 +37,7 @@ private:
 };
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

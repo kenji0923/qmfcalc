@@ -1,11 +1,11 @@
-#include <qmscalc/resolution_estimator.h>
+#include <qmfcalc/resolution_estimator.h>
 
 #include <cmath>
 
-#include <qmscalc/stability_diagram.h>
+#include <qmfcalc/stability_diagram.h>
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 namespace {
@@ -123,4 +123,4 @@ double find_slope_for_mass_resolution(const double target_resolution)
 }
 
 
-} // namespace qmscalc
+} // namespace qmfcalc

@@ -4,17 +4,17 @@
 
 cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 
-project(qmscalc VERSION 0.1.0 LANGUAGES CXX)
+project(qmfcalc VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
-option(QMSCALC_BUILD_EXECUTABLES "Build ROOT-backed command line executables" ON)
-option(QMSCALC_BUILD_DOCS "Build Doxygen documentation target" ON)
-option(QMSCALC_BUILD_PYTHON "Build Python extension module" OFF)
+option(QMFCALC_BUILD_EXECUTABLES "Build ROOT-backed command line executables" ON)
+option(QMFCALC_BUILD_DOCS "Build Doxygen documentation target" ON)
+option(QMFCALC_BUILD_PYTHON "Build Python extension module" OFF)
 
-if(QMSCALC_BUILD_PYTHON)
+if(QMFCALC_BUILD_PYTHON)
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 
@@ -30,7 +30,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 include(FetchContent)
 
-if(QMSCALC_BUILD_EXECUTABLES)
+if(QMFCALC_BUILD_EXECUTABLES)
     # argparse: command line argument parsing (header-only).
     FetchContent_Declare(
 	argparse
@@ -54,7 +54,7 @@ if(QMSCALC_BUILD_EXECUTABLES)
     add_subdirectory(${PROJECT_SOURCE_DIR}/ext/roothelper)
 endif()
 
-if(QMSCALC_BUILD_PYTHON)
+if(QMFCALC_BUILD_PYTHON)
     find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
     set(PYBIND11_FINDPYTHON ON)
     find_package(pybind11 CONFIG QUIET)
@@ -76,14 +76,14 @@ endif()
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/core)
 
-if(QMSCALC_BUILD_DOCS)
+if(QMFCALC_BUILD_DOCS)
     add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
 endif()
 
-if(QMSCALC_BUILD_EXECUTABLES)
+if(QMFCALC_BUILD_EXECUTABLES)
     add_subdirectory(${PROJECT_SOURCE_DIR}/exec)
 endif()
 
-if(QMSCALC_BUILD_PYTHON)
+if(QMFCALC_BUILD_PYTHON)
     add_subdirectory(${PROJECT_SOURCE_DIR}/python)
 endif()

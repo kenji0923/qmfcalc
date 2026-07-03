@@ -1,11 +1,11 @@
-#ifndef QMSCALC_ION_CONFIG_H
-#define QMSCALC_ION_CONFIG_H
+#ifndef QMFCALC_ION_CONFIG_H
+#define QMFCALC_ION_CONFIG_H
 
 
 #include <vector>
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 struct IonMotion
@@ -59,7 +59,7 @@ struct PhaseSpacePoint
 };
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

@@ -1,11 +1,11 @@
-#include <qmscalc/voltage_calculator.h>
+#include <qmfcalc/voltage_calculator.h>
 
 #include <cmath>
 
-#include <qmscalc/resolution_estimator.h>
+#include <qmfcalc/resolution_estimator.h>
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 double get_oscillation_energy(const double m, const double omega, const double r0)
@@ -52,4 +52,4 @@ VoltageSolution compute_target_voltages(const double m, const double delta_m, co
 }
 
 
-} // namespace qmscalc
+} // namespace qmfcalc

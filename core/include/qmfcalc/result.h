@@ -1,8 +1,8 @@
-#ifndef QMSCALC_RESULT_H
-#define QMSCALC_RESULT_H
+#ifndef QMFCALC_RESULT_H
+#define QMFCALC_RESULT_H
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 namespace Result {
@@ -17,10 +17,10 @@ struct Efficiency
 };
 
 
-} // namespace qmscalc::Result
+} // namespace qmfcalc::Result
 
 
-} // namespace qmscalc
+} // namespace qmfcalc
 
 
 #endif

@@ -15,8 +15,8 @@
 #include <fkYAML/node.hpp>
 #include <roothelper/roothelper.h>
 
-#include <qmscalc/stability_diagram.h>
-#include <qmscalc/voltage_calculator.h>
+#include <qmfcalc/stability_diagram.h>
+#include <qmfcalc/voltage_calculator.h>
 
 
 namespace rh = roothelper;
@@ -44,7 +44,7 @@ struct Input
 // Wrap the stability boundary as a parameter-free TF1 for drawing.
 double stability_boundary_tf1(const double* x, const double*)
 {
-    return qmscalc::get_first_stability_boundary(x[0]);
+    return qmfcalc::get_first_stability_boundary(x[0]);
 }
 
 
@@ -58,7 +58,7 @@ std::string default_output_directory(const Input& in)
 
 
 void write_result_yaml(const std::filesystem::path& path, const Input& in,
-		       const qmscalc::VoltageSolution& sol)
+		       const qmfcalc::VoltageSolution& sol)
 {
     fkyaml::node input = fkyaml::node::mapping();
     input["mass_u"] = in.mass_u;
@@ -86,7 +86,7 @@ void write_result_yaml(const std::filesystem::path& path, const Input& in,
 
 // Build, fill and write the single-entry result TTree into the given ROOT
 // directory (the data.root opened by DataSaver).
-void write_result_tree(TDirectory* directory, const Input& in, const qmscalc::VoltageSolution& sol)
+void write_result_tree(TDirectory* directory, const Input& in, const qmfcalc::VoltageSolution& sol)
 {
     double mass_u = in.mass_u;
     double delta_mass_u = in.delta_mass_u;
@@ -175,7 +175,7 @@ int calculate_voltage(int argc, char** argv)
 	return 1;
     }
 
-    const qmscalc::VoltageSolution sol = qmscalc::compute_target_voltages(
+    const qmfcalc::VoltageSolution sol = qmfcalc::compute_target_voltages(
 	in.mass_u * kAtomicMassUnit, in.delta_mass_u * kAtomicMassUnit, in.r0_mm * kMilliMetre,
 	in.frequency_MHz * kMegaHertz);
 
@@ -207,8 +207,8 @@ int calculate_voltage(int argc, char** argv)
 
 	TCanvas* c_stability_scan = rh::CreateCanvas("c_stability_scan", "Operating point");
 
-	const double a_peak = qmscalc::get_first_stability_apex_a();
-	TF1* f_boundary = new TF1("f_boundary", stability_boundary_tf1, 0, qmscalc::kFirstStabilityQMax, 0);
+	const double a_peak = qmfcalc::get_first_stability_apex_a();
+	TF1* f_boundary = new TF1("f_boundary", stability_boundary_tf1, 0, qmfcalc::kFirstStabilityQMax, 0);
 	f_boundary->SetTitle("First stability region with operating point");
 	f_boundary->SetNpx(1024);
 	f_boundary->SetLineColor(kBlack);

@@ -1,12 +1,12 @@
-#include <qmscalc/matrix_method_calculator.h>
+#include <qmfcalc/matrix_method_calculator.h>
 
 #include <cmath>
 #include <vector>
 
-#include <qmscalc/result.h>
+#include <qmfcalc/result.h>
 
 
-namespace qmscalc {
+namespace qmfcalc {
 
 
 double MatrixMethodCalculator::get_u_max_infinite_length(
@@ -54,4 +54,4 @@ std::vector<Result::Efficiency> MatrixMethodCalculator::get_efficiency_mass_spec
 }
 
 
-} // namespace qmscalc
+} // namespace qmfcalc

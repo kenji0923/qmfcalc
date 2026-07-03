@@ -1,7 +1,7 @@
 add_executable(analyze_resolution analyze_resolution.cc)
 target_link_libraries(analyze_resolution PRIVATE
-    qmscalc::ResolutionEstimator
-    qmscalc::StabilityDiagram
+    qmfcalc::ResolutionEstimator
+    qmfcalc::StabilityDiagram
     RootHelper
     argparse::argparse
     fkYAML::fkYAML
@@ -12,9 +12,9 @@ target_link_libraries(analyze_resolution PRIVATE
 
 add_executable(calculate_voltage calculate_voltage.cc)
 target_link_libraries(calculate_voltage PRIVATE
-    qmscalc::VoltageCalculator
-    qmscalc::ResolutionEstimator
-    qmscalc::StabilityDiagram
+    qmfcalc::VoltageCalculator
+    qmfcalc::ResolutionEstimator
+    qmfcalc::StabilityDiagram
     RootHelper
     argparse::argparse
     fkYAML::fkYAML
