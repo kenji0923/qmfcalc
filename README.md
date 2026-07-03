@@ -10,6 +10,8 @@ The Python package builds a native extension with `pybind11`:
 python -m pip install .
 ```
 
+Python 3.13 is the supported target.
+
 or directly from a Git checkout:
 
 ```sh
@@ -35,4 +37,4 @@ print(result["rf_voltage_v"], result["dc_voltage_v"])
 pole-to-pole DC voltage.
 
 The GitHub Actions workflow in `.github/workflows/python-package.yml` builds and
-tests Linux and Windows wheels on pushes and pull requests.
+tests Python 3.13 Linux and Windows wheels on pushes and pull requests.

@@ -1,2 +1,7 @@
 *.clangd
-build
+build/
+dist/
+wheelhouse/
+*.egg-info/
+__pycache__/
+*.pyc

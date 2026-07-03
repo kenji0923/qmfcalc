@@ -8,6 +8,15 @@
 namespace qmfcalc {
 
 
+namespace {
+
+
+constexpr double kTwoPi = 6.283185307179586476925286766559;
+
+
+} // namespace
+
+
 double get_oscillation_energy(const double m, const double omega, const double r0)
 {
     return m * std::pow(omega * r0, 2);
@@ -39,7 +48,7 @@ VoltageSolution compute_target_voltages(const double m, const double delta_m, co
     }
 
     const ResolutionEstimate est = estimate_mass_resolution_from_slope(slope);
-    const double omega = 2 * M_PI * f;
+    const double omega = kTwoPi * f;
 
     solution.transmitted = est.transmitted;
     solution.slope = est.slope;
