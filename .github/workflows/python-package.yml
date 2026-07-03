@@ -13,7 +13,6 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python-version: ["3.13"]
 
     steps:
       - name: Check out source
@@ -22,12 +21,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.13"
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v4.1.0
         env:
-          CIBW_BUILD: cp313-*
+          CIBW_BUILD: "cp312-* cp313-*"
           CIBW_ARCHS_LINUX: x86_64
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_SKIP: "*-musllinux_*"
@@ -39,5 +38,5 @@ jobs:
       - name: Upload wheel
         uses: actions/upload-artifact@v4
         with:
-          name: qmfcalc-${{ matrix.os }}-py${{ matrix.python-version }}-wheel
+          name: qmfcalc-${{ matrix.os }}-wheels
           path: wheelhouse/*.whl

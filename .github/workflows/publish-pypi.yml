@@ -49,7 +49,7 @@ jobs:
       - name: Build wheel
         uses: pypa/cibuildwheel@v4.1.0
         env:
-          CIBW_BUILD: cp313-*
+          CIBW_BUILD: "cp312-* cp313-*"
           CIBW_ARCHS_LINUX: x86_64
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_SKIP: "*-musllinux_*"
@@ -61,7 +61,7 @@ jobs:
       - name: Upload wheel
         uses: actions/upload-artifact@v4
         with:
-          name: qmfcalc-${{ matrix.os }}-py3.13-wheel
+          name: qmfcalc-${{ matrix.os }}-wheels
           path: dist/*.whl
 
   publish:

@@ -7,12 +7,13 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "qmfcalc"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python bindings for quadrupole mass filter voltage calculations"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: C++",
     "Topic :: Scientific/Engineering :: Physics",

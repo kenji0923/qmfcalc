@@ -10,7 +10,7 @@ The Python package builds a native extension with `pybind11`:
 python -m pip install .
 ```
 
-Python 3.13 is the supported target.
+Python 3.12 and 3.13 are supported targets.
 
 or directly from a Git checkout:
 
@@ -37,7 +37,7 @@ print(result["rf_voltage_v"], result["dc_voltage_v"])
 pole-to-pole DC voltage.
 
 The GitHub Actions workflow in `.github/workflows/python-package.yml` builds and
-tests Python 3.13 Linux and Windows wheels on pushes and pull requests.
+tests Python 3.12 and 3.13 Linux and Windows wheels on pushes and pull requests.
 
 ## PyPI release
 
@@ -52,9 +52,10 @@ Configure a PyPI pending trusted publisher with:
 Then publish a GitHub Release from a version tag, for example:
 
 ```sh
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.1.1
+git push origin v0.1.1
 ```
 
-The `.github/workflows/publish-pypi.yml` workflow builds the Python 3.13 Linux
-and Windows wheels, builds the source distribution, and publishes them to PyPI.
+The `.github/workflows/publish-pypi.yml` workflow builds the Python 3.12 and
+3.13 Linux and Windows wheels, builds the source distribution, and publishes
+them to PyPI.
