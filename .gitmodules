@@ -1,0 +1,3 @@
+[submodule "ext/roothelper"]
+	path = ext/roothelper
+	url = https://github.com/kenji0923/roothelper.git

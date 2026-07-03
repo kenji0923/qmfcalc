@@ -1,0 +1,27 @@
+[build-system]
+requires = [
+    "scikit-build-core>=0.10",
+    "pybind11>=2.13",
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "qmscalc"
+version = "0.1.0"
+description = "Python bindings for quadrupole mass spectrometer voltage calculations"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[tool.scikit-build]
+cmake.version = ">=3.28"
+wheel.packages = []
+
+[tool.scikit-build.cmake.define]
+QMSCALC_BUILD_PYTHON = true
+QMSCALC_BUILD_EXECUTABLES = false
+QMSCALC_BUILD_DOCS = false
