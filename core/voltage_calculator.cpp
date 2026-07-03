@@ -61,4 +61,30 @@ VoltageSolution compute_target_voltages(const double m, const double delta_m, co
 }
 
 
+MassResolutionSolution compute_mass_resolution_from_voltages(const double U, const double V,
+							     const double r0, const double f)
+{
+    MassResolutionSolution solution{};
+    solution.U = U;
+    solution.V = V;
+    solution.slope = 2 * U / V;
+
+    const ResolutionEstimate est = estimate_mass_resolution_from_slope(solution.slope);
+    if (!est.transmitted) {
+	solution.transmitted = false;
+	return solution;
+    }
+
+    const double omega = kTwoPi * f;
+
+    solution.transmitted = true;
+    solution.resolution = est.mass_resolution;
+    solution.q = est.q_center;
+    solution.a = est.a_center;
+    solution.mass = 2 * kElementaryCharge * V / est.q_center / std::pow(omega * r0, 2);
+
+    return solution;
+}
+
+
 } // namespace qmfcalc

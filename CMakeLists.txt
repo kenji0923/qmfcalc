@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 
-project(qmfcalc VERSION 0.1.1 LANGUAGES CXX)
+project(qmfcalc VERSION 0.1.2 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)

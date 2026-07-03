@@ -58,6 +58,34 @@ py::dict calculate_voltages(const double r0_mm,
 }
 
 
+py::dict calculate_mass_resolution(const double r0_mm,
+				   const double rf_voltage_v,
+				   const double dc_voltage_v,
+				   const double rf_frequency_mhz)
+{
+    require_positive("r0_mm", r0_mm);
+    require_positive("rf_voltage_v", rf_voltage_v);
+    require_positive("dc_voltage_v", dc_voltage_v);
+    require_positive("rf_frequency_mhz", rf_frequency_mhz);
+
+    const double r0_m = r0_mm * kMilliMetre;
+    const double rf_frequency_hz = rf_frequency_mhz * kMegaHertz;
+
+    const qmfcalc::MassResolutionSolution solution =
+	qmfcalc::compute_mass_resolution_from_voltages(
+	    dc_voltage_v, rf_voltage_v, r0_m, rf_frequency_hz);
+
+    if (!solution.transmitted) {
+	throw std::runtime_error("voltage ratio gives no transmitted operating window");
+    }
+
+    return py::dict(
+	"m_over_q_amu_per_z"_a = solution.mass / kAtomicMassUnit,
+	"resolution"_a = solution.resolution
+    );
+}
+
+
 } // namespace
 
 
@@ -87,5 +115,27 @@ Returns:
 
 The RF voltage is the per-rod peak-to-peak voltage. The DC voltage is
 pole-to-pole, with rods at +/-dc_voltage_v/2.
+)pbdoc");
+
+    m.def(
+	"calculate_mass_resolution",
+	&calculate_mass_resolution,
+	"r0_mm"_a,
+	"rf_voltage_v"_a,
+	"dc_voltage_v"_a,
+	"rf_frequency_mhz"_a,
+	R"pbdoc(
+Calculate the transmitted mass-to-charge value and resolution from QMF voltages.
+
+Args:
+    r0_mm: Field radius from central axis to rod surface [mm].
+    rf_voltage_v: Per-rod peak-to-peak RF voltage [V].
+    dc_voltage_v: Pole-to-pole DC voltage [V].
+    rf_frequency_mhz: RF drive frequency [MHz].
+
+Returns:
+    dict: ``{"m_over_q_amu_per_z": ..., "resolution": ...}``.
+
+The RF and DC voltage conventions are the same as ``calculate_voltages``.
 )pbdoc");
 }

@@ -48,12 +48,33 @@ struct VoltageSolution
 };
 
 
+// Operating point recovered from electrode voltages.
+struct MassResolutionSolution
+{
+    bool transmitted;  // false if the voltage ratio gives no stability window
+    double mass;       // transmitted effective singly charged mass [kg]
+    double resolution; // recovered R = m / delta_m
+    double slope;      // a/q of the operating line
+    double q;          // operating point q (transmitted-mass-center, = q_center)
+    double a;          // operating point a (= a_center)
+    double U;          // pole-to-pole DC voltage [V]
+    double V;          // per-rod peak-to-peak RF voltage [V]
+};
+
+
 // Given the mass center m [kg], resolution width delta_m [kg], field radius
 // r0 [m] and RF frequency f [Hz], solve for the DC (U) and RF (V) voltages.
 // The scan-line slope is recovered from the resolution estimator, the operating
 // point is taken at the transmitted-mass-center (window midpoint), and the
 // voltages follow from the Mathieu definitions above.
 VoltageSolution compute_target_voltages(double m, double delta_m, double r0, double f);
+
+
+// Given the pole-to-pole DC voltage U [V], per-rod peak-to-peak RF voltage
+// V [V], field radius r0 [m] and RF frequency f [Hz], solve for the
+// transmitted mass center and resolution.
+MassResolutionSolution compute_mass_resolution_from_voltages(double U, double V, double r0,
+							     double f);
 
 
 } // namespace qmfcalc

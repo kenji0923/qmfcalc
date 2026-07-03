@@ -7,7 +7,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "qmfcalc"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python bindings for quadrupole mass filter voltage calculations"
 readme = "README.md"
 requires-python = ">=3.12"

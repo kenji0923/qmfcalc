@@ -31,7 +31,7 @@ jobs:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_SKIP: "*-musllinux_*"
           CIBW_TEST_COMMAND: >-
-            python -c "import qmfcalc; r = qmfcalc.calculate_voltages(15.0, 250.0, 250.0, 1.0); assert r['rf_voltage_v'] > 0.0; assert r['dc_voltage_v'] > 0.0; print(r)"
+            python -c "import math, qmfcalc; r = qmfcalc.calculate_voltages(15.0, 250.0, 250.0, 1.0); inv = qmfcalc.calculate_mass_resolution(15.0, r['rf_voltage_v'], r['dc_voltage_v'], 1.0); assert r['rf_voltage_v'] > 0.0; assert r['dc_voltage_v'] > 0.0; assert math.isclose(inv['m_over_q_amu_per_z'], 250.0, rel_tol=1e-6); assert math.isclose(inv['resolution'], 250.0, rel_tol=1e-6); print(r); print(inv)"
         with:
           output-dir: wheelhouse
 
