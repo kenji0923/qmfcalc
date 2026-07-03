@@ -38,3 +38,23 @@ pole-to-pole DC voltage.
 
 The GitHub Actions workflow in `.github/workflows/python-package.yml` builds and
 tests Python 3.13 Linux and Windows wheels on pushes and pull requests.
+
+## PyPI release
+
+Configure a PyPI pending trusted publisher with:
+
+- PyPI project name: `qmfcalc`
+- Owner: `kenji0923`
+- Repository: `qmfcalc`
+- Workflow name: `publish-pypi.yml`
+- Environment name: `pypi`
+
+Then publish a GitHub Release from a version tag, for example:
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The `.github/workflows/publish-pypi.yml` workflow builds the Python 3.13 Linux
+and Windows wheels, builds the source distribution, and publishes them to PyPI.
